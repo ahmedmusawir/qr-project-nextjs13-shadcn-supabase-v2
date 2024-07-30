@@ -9,6 +9,8 @@ interface AuthState {
     is_qr_member: number;
   };
   isAuthenticated: boolean;
+  isLoading: boolean;
+  setIsLoading: (isLoading: boolean) => void;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   setUser: (user: any) => void;
@@ -25,6 +27,8 @@ export const useAuthStore = create<AuthState>()(
         is_qr_member: 0,
       },
       isAuthenticated: false,
+      isLoading: true,
+      setIsLoading: (isLoading) => set({ isLoading }),
       setUser: (user) => set({ user, isAuthenticated: !!user }),
       setRoles: (roles) => set({ roles }),
       login: async (email, password) => {
@@ -87,7 +91,10 @@ export const useAuthStore = create<AuthState>()(
       },
     }),
     {
-      name: "auth-store", // name of the item in the storage (localStorage or sessionStorage)
+      name: "auth-store", // name of the item in the storage (localStorage)
+      onRehydrateStorage: () => (state) => {
+        state?.setIsLoading(false);
+      },
     }
   )
 );

@@ -21,7 +21,8 @@ function Page({ children, className, FULL, customYMargin }: Props) {
       )}
       {!FULL && (
         <section
-          className={`min-h-full w-11/12 xl:w-4/5 mx-auto ${
+          // className={`min-h-full w-11/12 xl:w-4/5 mx-auto ${
+          className={`min-h-full w-11/12 mx-auto  ${
             customYMargin ? customYMargin : "my-10"
           } ${className}`}
         >

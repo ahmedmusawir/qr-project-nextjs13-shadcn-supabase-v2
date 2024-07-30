@@ -58,22 +58,16 @@ const LoginForm = () => {
 
       // Ensure the state is updated before accessing roles
       const roles = useAuthStore.getState().roles;
-      const isAuthenticated = useAuthStore.getState().isAuthenticated;
 
-      // Only proceed with redirection if the user is authenticated
-      if (isAuthenticated) {
-        // Role-based redirection logic
-        if (roles.is_qr_superadmin === 1) {
-          router.push("/superadmin-portal");
-        } else if (roles.is_qr_admin === 1) {
-          router.push("/admin-portal");
-        } else if (roles.is_qr_member === 1) {
-          router.push("/members-portal");
-        } else {
-          router.push("/"); // Fallback in case no roles match
-        }
+      // Role-based redirection logic
+      if (roles.is_qr_superadmin === 1) {
+        router.push("/superadmin-portal");
+      } else if (roles.is_qr_admin === 1) {
+        router.push("/admin-portal");
+      } else if (roles.is_qr_member === 1) {
+        router.push("/members-portal");
       } else {
-        setError("Authentication failed. Please try again."); // Set an appropriate error message
+        router.push("/"); // Fallback in case no roles match
       }
     } catch (error: any) {
       console.error("Login error:", error.message);

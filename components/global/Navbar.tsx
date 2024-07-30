@@ -83,8 +83,8 @@ const Navbar = () => {
 
       {/* NAVIGATION */}
       <nav className="hidden sm:ml-6 sm:flex flex-grow justify-center items-center">
-        <NavLink href="/demo">Demo</NavLink>
-        <NavLink href="/loading-example">Suspension Test</NavLink>
+        <NavLink href="/booking">Booking</NavLink>
+        {/* <NavLink href="/loading-example">Suspension Test</NavLink> */}
         <NavLink href="/xxx">Global 404</NavLink>
       </nav>
 
@@ -106,7 +106,7 @@ const Navbar = () => {
               </AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className="bg-white dark:bg-slate-600">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>

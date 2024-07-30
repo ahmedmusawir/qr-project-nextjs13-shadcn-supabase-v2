@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-const Sidebar = () => {
+const AdminSidebar = () => {
   return (
     <Command className="bg-secondary">
       <CommandInput placeholder="Type a command or search..." />
@@ -29,11 +29,11 @@ const Sidebar = () => {
         <CommandGroup heading="Suggestions">
           <CommandItem>
             <LayoutDashboard className="mr-2 h-4 w-4" />
-            <Link href="/members-portal">Dashboard</Link>
+            <Link href="/admin-portal">Dashboard</Link>
           </CommandItem>
           <CommandItem>
             <Newspaper className="mr-2 h-4 w-4" />
-            <Link href="/booking">New Booking</Link>
+            <Link href="/admin-booking">New Booking</Link>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
@@ -59,4 +59,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default AdminSidebar;

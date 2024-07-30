@@ -15,14 +15,17 @@ const withMemberProtection = (WrappedComponent: ComponentType<LayoutProps>) => {
     const router = useRouter();
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
     const roles = useAuthStore((state) => state.roles);
+    const isLoading = useAuthStore((state) => state.isLoading);
 
     useEffect(() => {
-      if (!isAuthenticated || roles.is_qr_member !== 1) {
-        router.push("/auth");
+      if (!isLoading) {
+        if (!isAuthenticated || roles.is_qr_member !== 1) {
+          router.push("/auth");
+        }
       }
-    }, [isAuthenticated, roles, router]);
+    }, [isAuthenticated, roles, router, isLoading]);
 
-    if (!isAuthenticated || roles.is_qr_member !== 1) {
+    if (isLoading || !isAuthenticated || roles.is_qr_member !== 1) {
       return <Spinner />;
     }
 
