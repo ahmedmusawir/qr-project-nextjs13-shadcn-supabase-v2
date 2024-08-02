@@ -79,6 +79,9 @@ export const useAuthStore = create<AuthState>()(
           throw new Error(result.error);
         }
 
+        // Clear redirect URL
+        localStorage.removeItem("redirectAfterLogin");
+
         set({
           user: null,
           roles: {

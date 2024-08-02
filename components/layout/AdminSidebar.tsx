@@ -35,6 +35,10 @@ const AdminSidebar = () => {
             <Newspaper className="mr-2 h-4 w-4" />
             <Link href="/admin-booking">New Booking</Link>
           </CommandItem>
+          <CommandItem>
+            <Newspaper className="mr-2 h-4 w-4" />
+            <Link href="/posts">Bookings</Link>
+          </CommandItem>
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Settings">

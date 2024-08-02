@@ -16,6 +16,7 @@ import { Post } from "@/types/posts";
 import PostDeleteModal from "./PostDeleteModal";
 import { usePostStore } from "@/store/usePostStore";
 import { formatDate } from "@/utils/common/commonUtils";
+import { Badge } from "../ui/badge";
 
 interface PostsTableProps {
   limit?: number;
@@ -47,8 +48,8 @@ const PostsTable = ({ limit, title, posts }: PostsTableProps) => {
         <TableCaption>A list of your recent JSON Server posts.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="">Title</TableHead>
-            <TableHead className="hidden md:table-cell">Author</TableHead>
+            <TableHead className="">Event Name</TableHead>
+            <TableHead className="hidden md:table-cell">Member</TableHead>
             <TableHead className="hidden md:table-cell">Date</TableHead>
           </TableRow>
         </TableHeader>
@@ -57,7 +58,10 @@ const PostsTable = ({ limit, title, posts }: PostsTableProps) => {
             <TableRow key={post.id}>
               <TableCell>
                 <Link href={`/posts/${post.id}`}>
-                  {post.title} POST ID: {post.id}
+                  {post.title}{" "}
+                  <Badge variant={"outline"} className="ml-5">
+                    EVENT ID: {post.id}{" "}
+                  </Badge>
                 </Link>
               </TableCell>
               <TableCell>{post.author}</TableCell>

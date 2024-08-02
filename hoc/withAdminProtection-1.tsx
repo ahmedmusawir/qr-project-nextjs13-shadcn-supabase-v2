@@ -10,21 +10,22 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const withSuperAdminProtection = (
-  WrappedComponent: ComponentType<LayoutProps>
-) => {
+const withAdminProtection = (WrappedComponent: ComponentType<LayoutProps>) => {
   return (props: LayoutProps) => {
     const router = useRouter();
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
     const roles = useAuthStore((state) => state.roles);
+    const isLoading = useAuthStore((state) => state.isLoading);
 
     useEffect(() => {
-      if (!isAuthenticated || roles.is_qr_superadmin !== 1) {
-        router.push("/auth");
+      if (!isLoading) {
+        if (!isAuthenticated || roles.is_qr_admin !== 1) {
+          router.push("/auth");
+        }
       }
-    }, [isAuthenticated, roles, router]);
+    }, [isAuthenticated, roles, router, isLoading]);
 
-    if (!isAuthenticated || roles.is_qr_superadmin !== 1) {
+    if (isLoading || !isAuthenticated || roles.is_qr_admin !== 1) {
       return <Spinner />;
     }
 
@@ -32,4 +33,4 @@ const withSuperAdminProtection = (
   };
 };
 
-export default withSuperAdminProtection;
+export default withAdminProtection;

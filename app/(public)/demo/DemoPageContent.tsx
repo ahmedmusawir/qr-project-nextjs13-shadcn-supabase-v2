@@ -3,6 +3,7 @@ import Head from "next/head";
 import Page from "@/components/common/Page";
 import Row from "@/components/common/Row";
 import Box from "@/components/common/Box";
+import { Button } from "@/components/ui/button";
 
 const Demo = () => {
   return (
@@ -17,6 +18,34 @@ const Demo = () => {
           <h1 className="h1">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit
           </h1>
+          <Button
+            className="bg-red-700 hover:bg-red-600 text-white"
+            size={"sm"}
+          >
+            Small Button
+          </Button>
+          <Button className="bg-red-700 hover:bg-red-600 text-white ml-3">
+            Default Button
+          </Button>
+          <Button
+            className="bg-red-700 hover:bg-red-600 text-white ml-3"
+            size={"lg"}
+          >
+            Large Button
+          </Button>
+          <Button
+            className="bg-white text-black dark:text-white ml-3"
+            size={"lg"}
+            variant={"outline"}
+          >
+            Varient Button
+          </Button>
+          <Button
+            className="bg-red-700 hover:bg-red-600 text-white ml-3"
+            size={"xl"}
+          >
+            Large Button
+          </Button>
           <h2 className="h2">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit
           </h2>

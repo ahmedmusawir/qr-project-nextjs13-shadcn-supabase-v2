@@ -20,6 +20,10 @@ const withAdminProtection = (WrappedComponent: ComponentType<LayoutProps>) => {
     useEffect(() => {
       if (!isLoading) {
         if (!isAuthenticated || roles.is_qr_admin !== 1) {
+          // Store the current URL before redirecting
+          const currentURL = window.location.href;
+          localStorage.setItem("redirectAfterLogin", currentURL);
+
           router.push("/auth");
         }
       }

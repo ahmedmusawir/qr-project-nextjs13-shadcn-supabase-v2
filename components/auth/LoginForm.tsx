@@ -62,15 +62,25 @@ const LoginForm = () => {
 
       // Only proceed with redirection if the user is authenticated
       if (isAuthenticated) {
+        // Check if there's a stored URL in local storage
+        const redirectURL = localStorage.getItem("redirectAfterLogin");
+
         // Role-based redirection logic
-        if (roles.is_qr_superadmin === 1) {
-          router.push("/superadmin-portal");
-        } else if (roles.is_qr_admin === 1) {
-          router.push("/admin-portal");
-        } else if (roles.is_qr_member === 1) {
-          router.push("/members-portal");
+        if (redirectURL) {
+          // Clear the stored URL after using it
+          localStorage.removeItem("redirectAfterLogin");
+          router.push(redirectURL);
         } else {
-          router.push("/"); // Fallback in case no roles match
+          // Default role-based redirection
+          if (roles.is_qr_superadmin === 1) {
+            router.push("/superadmin-portal");
+          } else if (roles.is_qr_admin === 1) {
+            router.push("/admin-portal");
+          } else if (roles.is_qr_member === 1) {
+            router.push("/members-portal");
+          } else {
+            router.push("/"); // Fallback in case no roles match
+          }
         }
       } else {
         setError("Authentication failed. Please try again."); // Set an appropriate error message
